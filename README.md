@@ -1,5 +1,6 @@
 ## Project Overview
 
+This project is about **Appointment Booking System**
 This solution follows a **microservices architecture** and is divided into **4 main APIs** and **1 background worker**:
 
 - **Appointment.API**

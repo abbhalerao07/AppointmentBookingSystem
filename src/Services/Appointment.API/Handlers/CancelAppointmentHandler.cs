@@ -34,7 +34,7 @@ namespace Appointment.API.Handlers
             // Publish cancellation event
             var cancelEvent = new AppointmentCancelledEvent
             {
-                AppointmentId = Guid.NewGuid(), 
+                AppointmentId = appointment.Id, 
                 PatientEmail = "abbhalerao@gmail.com", 
                 AppointmentDate = appointment.AppointmentDate,
                 Reason = request.Reason ?? "Cancelled by user"

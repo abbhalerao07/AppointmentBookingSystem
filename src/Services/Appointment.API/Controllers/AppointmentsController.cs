@@ -18,7 +18,7 @@ namespace Appointment.API.Controllers
             _mediator = mediator;
         }
 
-        [HttpPost]
+        [HttpPost("book-appoinments")]
         public async Task<IActionResult> BookAppointment([FromBody] BookAppointmentCommand command)
         {
             try
@@ -39,14 +39,7 @@ namespace Appointment.API.Controllers
             return Ok(appointments);
         }
 
-        [HttpGet("doctors-list")]
-        public async Task<IActionResult> GetDoctors()
-        {
-            var appointments = await _mediator.Send(new GetMyAppointmentsQuery());
-            return Ok(appointments);
-        }
-
-        [HttpDelete("{id}")]
+        [HttpDelete("cancel-appointment/{id}")]
         public async Task<IActionResult> CancelAppointment(Guid id, [FromBody] CancelRequest request)
         {
             try

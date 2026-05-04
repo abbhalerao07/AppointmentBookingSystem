@@ -37,14 +37,17 @@ namespace Appointment.API.Handlers
                 .ToList();
 
             if (!matchingSchedules.Any())
-                throw new InvalidOperationException("Doctor is not available on that day");
+                throw new InvalidOperationException("Doctor will not be available on that day");
+
+            var requestedDurationMinutes = (int)(request.EndTime - request.StartTime).TotalMinutes;
 
             var fitsSchedule = matchingSchedules.Any(x =>
                 request.StartTime >= x.StartTime &&
-                request.EndTime <= x.EndTime);
+                request.EndTime <= x.EndTime &&
+                requestedDurationMinutes == x.SlotDurationMinutes);
 
             if (!fitsSchedule)
-                throw new InvalidOperationException("Selected time is outside doctor schedule");
+                throw new InvalidOperationException("Selected time must match the doctor's slot duration");
 
             var hasConflict = await _context.Appointments
                 .AnyAsync(a =>

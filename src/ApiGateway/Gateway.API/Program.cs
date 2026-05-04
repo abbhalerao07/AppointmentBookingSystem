@@ -21,6 +21,7 @@ app.UseSwaggerUI(c =>
     c.SwaggerEndpoint("http://localhost:5001/swagger/v1/swagger.json", "Identity API");
     c.SwaggerEndpoint("http://localhost:5002/swagger/v1/swagger.json", "Schedule API");
     c.SwaggerEndpoint("http://localhost:5003/swagger/v1/swagger.json", "Appointment API");
+    c.SwaggerEndpoint("http://localhost:5004/swagger/v1/swagger.json", "Availability API");
     c.RoutePrefix = "swagger";
 });
 
